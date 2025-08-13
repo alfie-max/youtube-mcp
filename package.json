@@ -1,0 +1,32 @@
+{
+  "name": "youtube-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for extracting YouTube video transcripts",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "youtube",
+    "transcript",
+    "model-context-protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "url-parse": "^1.5.10",
+    "youtubei.js": "^15.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/url-parse": "^1.4.11",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}
