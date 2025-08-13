@@ -10,6 +10,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 
 import { YouTubeJSTranscriptExtractor } from './youtube/youtube-js-transcript-extractor.js';
+import { YouTubeVideoInfoExtractor } from './youtube/video-info-extractor.js';
 
 const server = new Server(
   {
@@ -56,6 +57,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: 'boolean',
               description: 'If true, returns a condensed version with every 5th segment plus metadata. Defaults to false',
               default: false,
+            },
+          },
+          required: ['url'],
+        },
+      },
+      {
+        name: 'get_youtube_video_info',
+        description: 'Get basic video metadata including title, description, channel, duration, and view count',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            url: {
+              type: 'string',
+              description: 'YouTube video URL (supports youtube.com, youtu.be, and other formats)',
             },
           },
           required: ['url'],
@@ -134,6 +149,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                   }
                 },
               }, null, 2),
+            },
+          ],
+        };
+      }
+
+      case 'get_youtube_video_info': {
+        const { url } = args as { url: string };
+
+        const result = await YouTubeVideoInfoExtractor.extract(url);
+
+        if (!result.success) {
+          throw new McpError(
+            ErrorCode.InvalidRequest,
+            `Failed to extract video info: ${result.message}`
+          );
+        }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify(result, null, 2),
             },
           ],
         };
