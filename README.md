@@ -1,4 +1,5 @@
 # YouTube MCP
+[![smithery badge](https://smithery.ai/badge/@alfie-max/youtube-mcp)](https://smithery.ai/server/@alfie-max/youtube-mcp)
 
 A Model Context Protocol (MCP) server for extracting YouTube video transcripts with advanced filtering capabilities. This streamlined server provides a single, robust tool for AI assistants and MCP clients to get structured transcript data from YouTube videos with comprehensive filtering options and token limit compliance.
 
@@ -16,6 +17,15 @@ A Model Context Protocol (MCP) server for extracting YouTube video transcripts w
 
 ## Installation
 
+### Installing via Smithery
+
+To install youtube-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@alfie-max/youtube-mcp):
+
+```bash
+npx -y @smithery/cli install @alfie-max/youtube-mcp --client claude
+```
+
+### Manual Installation
 1. Clone the repository:
 ```bash
 git clone <repository-url>
